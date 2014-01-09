@@ -1,0 +1,15 @@
+<h1>posts#show</h1>
+
+<%= link_to "posts#index", posts_path %>
+
+<p>
+	<strong>TITLE</strong><br>
+	<%= @post.title %>
+</p>
+
+<p>
+	<strong>TEXT</strong><br>
+	<%= @post.text %>
+</p>
+
+<%= link_to '#edit', edit_post_path(@post) %>
