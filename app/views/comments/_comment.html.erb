@@ -7,3 +7,7 @@
 	<strong>TEXT:</strong>
 	<%= comment.text %>
 </p>
+
+<p>
+	<%= link_to 'destroy', [comment.post, comment], method: :delete, data: { confirm: 'are you sure' } %>
+</p>
