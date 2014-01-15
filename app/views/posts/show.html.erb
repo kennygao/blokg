@@ -12,4 +12,45 @@
 	<%= @post.text %>
 </p>
 
+<h2>comments</h2>
+
+<% @post.comments.reject { |c| c == @comment }.each do |comment| %>
+	<p>
+		<strong>COMMENTER:</strong>
+		<%= comment.commenter %>
+	</p>
+
+	<p>
+		<strong>TEXT:</strong>
+		<%= comment.text %>
+	</p>
+<% end %>
+
+<h2>new comment</h2>
+
+<%= form_for [@post, @comment] do |f| %>
+	<% if @comment.errors.any? %>
+		you got <%= pluralize(@comment.errors.count, 'issue') %>
+		<ul>
+			<% @comment.errors.full_messages.each do |m| %>
+				<li><%= m %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	
+	<p>
+		<%= f.label :commenter %><br>
+		<%= f.text_field :commenter %><br>
+	</p>
+
+	<p>
+		<%= f.label :text %><br>
+		<%= f.text_area :text %><br>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+
 <%= link_to '#edit', edit_post_path(@post) %>
