@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
+  http_basic_authenticate_with name: 'blokg', password: 'password', only: [:create, :update, :destroy]
+
   def index
     @posts = Post.all
   end
 
   def create
     @post = Post.new(post_params)
-    
+
     if @post.save
       redirect_to @post
     else
@@ -35,7 +37,7 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @post = Post.find(params[:id])
 
